@@ -1,6 +1,9 @@
 <template>
   <div>
-    <p>Server Status: {{ status }}</p>
+    <p>
+      Server Status:
+      <span v-bind:class="classObject">{{ status }}</span>
+    </p>
     <button @click="changeStatus">Change Status</button>
     <hr />
   </div>
@@ -10,13 +13,21 @@
 export default {
   data: function() {
     return {
-      status: "Critical"
+      status: "Normal"
     };
   },
   methods: {
     changeStatus() {
       const currentStatus = this.status;
       this.status = currentStatus === "Normal" ? "Critical" : "Normal";
+    }
+  },
+  computed: {
+    classObject: function() {
+      return {
+        danger: this.status === "Critical",
+        normal: this.status !== "Critical"
+      };
     }
   }
 };

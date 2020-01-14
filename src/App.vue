@@ -50,4 +50,7 @@ a {
 .danger {
   color: red;
 }
+.normal {
+  color: green;
+}
 </style>
